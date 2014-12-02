@@ -18,9 +18,12 @@ end
 
 # prompt player to hit or stand until stand or bust
 while player_hand.score < 21
+  puts
   puts "Player's score: #{player_hand.score}"
+  puts
   print "Hit or stand (H/S): "
   response = gets.chomp.downcase
+  puts
   if response == "h"
     new_card = deck.cards.pop
     player_hand.calculate_value(new_card)
@@ -28,7 +31,9 @@ while player_hand.score < 21
     puts "Player was dealt #{new_card.number} of #{new_card.suit}"
   elsif response == "s"
     puts "Player stands"
+    puts
     puts "Player's score: #{player_hand.score}"
+    puts
     break
   else
     puts "Please enter either h or s"
@@ -49,7 +54,9 @@ end
 
 # dealer hits or stands until bust or stand
 while dealer_hand.score < 21
+  puts
   puts "Dealer's score: #{dealer_hand.score}"
+  puts
   if dealer_hand.score < 17
     new_card = deck.cards.pop
     dealer_hand.calculate_value(new_card)
@@ -57,6 +64,7 @@ while dealer_hand.score < 21
     puts "Dealer was dealt #{new_card.number} of #{new_card.suit}"
   else
     puts "Dealer stands"
+    puts
     break
   end
 end
@@ -67,6 +75,7 @@ def who_won(player_hand, dealer_hand)
   elsif dealer_hand.score > player_hand.score && !dealer_hand.busted?
     "Dealer wins"
   elsif dealer_hand.busted?
+    puts
     "Bust. You win"
   elsif player_hand.score == dealer_hand.score
     "Push. No one wins."
